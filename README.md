@@ -1,79 +1,125 @@
 # amanah-atlas-open-access-2026
 
-# Base44 Project
+# Amanah Atlas
 
-Use this repository to run and edit the app locally, then publish changes back through Base44.
+Amanah Atlas is a DMV-focused student platform built to help Muslim students find volunteer opportunities, SSL forms, study-friendly halal places, resume support, and community-based opportunities in one place.
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+## What it does
 
-## Prerequisites
+- Helps students discover real volunteer, internship, mosque-based, and SSL opportunities.
+- Lets users create and submit MCPS SSL forms.
+- Shows halal-friendly cafes and restaurants for studying.
+- Includes outreach features to message opportunity admins.
+- Supports resume building and personalized recommendations.
+- Includes an AI chatbot for guidance and student support.
+- Supports Google sign-in and email sign-up with verification.
 
-1. Clone the repository using the project's Git URL.
-2. Navigate to the project directory.
-3. Install dependencies: `npm install`.
-4. Install the Base44 CLI: `npm install -g base44@latest`.
+## Features
 
-See the [Base44 CLI docs](https://docs.base44.com/developers/references/cli/get-started/overview) if you want to run Base44 commands directly.
+- Google OAuth login.
+- Email sign-up with verification code.
+- SSL form creation, filling, download, and admin submission.
+- Sent & received SSL tracking.
+- Study Cafes with filters and real location data.
+- Mosque-based opportunities.
+- Resume builder with generated bullet points.
+- Personalized extracurricular recommendations.
+- AI chatbot powered by Gemini.
+- Dismissible notifications.
+- Account deletion and re-signup support.
 
-## Run Locally
+## Tech Stack
 
-Run the full local development environment from the project root:
+- Frontend: React / Next.js
+- Backend: Supabase
+- Authentication: Google OAuth + Supabase Auth
+- AI: Google Gemini API via Google AI Studio
+- Email: Resend or SendGrid
+- Maps and places: Overpass API, Nominatim, Geoapify
+- PDF generation: pdf-lib or Puppeteer
+
+## APIs and Documentation Used
+
+### Base44
+- Base44 Docs: https://docs.base44.com/
+- Base44 Backend: https://base44.com/backend
+
+### Google / Gemini
+- Google AI Studio / Gemini API Docs: https://ai.google.dev/gemini-api/docs
+- Gemini API Reference: https://ai.google.dev/api
+- Gemini All Methods: https://ai.google.dev/api/all-methods
+- Gemini Document Processing: https://ai.google.dev/gemini-api/docs/document-processing
+- Google OAuth 2.0: https://developers.google.com/identity/protocols/oauth2
+- Google OAuth Consent Screen: https://developers.google.com/workspace/guides/configure-oauth-consent
+
+### Supabase
+- Supabase Docs: https://supabase.com/docs
+- Supabase API Docs: https://api.supabase.com/api/v1
+- Supabase Google Auth: https://supabase.com/docs/guides/auth/social-login/auth-google
+- Supabase Storage: https://supabase.com/docs/guides/storage
+- Supabase Email Functions: https://supabase.com/docs/guides/functions/examples/send-emails
+
+### Email
+- Resend Docs: https://resend.com/docs
+- SendGrid Docs: https://docs.sendgrid.com/
+- Nodemailer: https://nodemailer.com/
+- Emailable API: https://emailable.com/api
+- Twilio Email Validation: https://www.twilio.com/en-us/products/email-api/email-address-validation-api
+- EmailListVerify API: https://emaillistverify.com/api
+
+### Maps / Places
+- Overpass API User Manual: https://dev.overpass-api.de/overpass-doc/en/
+- Overpass Language Guide: https://wiki.openstreetmap.org/Overpass_API/Language_Guide
+- Nominatim Usage Policy: https://operations.osmfoundation.org/policies/nominatim/
+- Geoapify Places API: https://www.geoapify.com/places-api/
+- Geoapify Place Details API: https://apidocs.geoapify.com/docs/place-details/
+
+### SSL / MCPS
+- MCPS SSL Office: https://www.montgomeryschoolsmd.org/departments/ssl/
+- MCPS SSL FAQ: https://www.montgomeryschoolsmd.org/departments/ssl/pages/faq/
+- MCPS SSL Form PDF: https://ww2.montgomeryschoolsmd.org/departments/forms/pdf/560-51.pdf
+- MCPS SSL Form Detail Page: https://ww2.montgomeryschoolsmd.org/departments/forms/detail.aspx?formID=346&formNumber=560-50
+- MCPS SSL Form Reference PDF: https://www.montgomeryschoolsmd.org/siteassets/schools/middle-schools/g-m/westms/uploadedfiles/news/ssl-verification-form560-51.pdf
+- MCPS SSL Example School Page: https://www.montgomeryschoolsmd.org/schools/wjhs/ssl/
+
+### PDF Tools
+- pdf-lib: https://pdf-lib.js.org/
+- Puppeteer: https://pptr.dev/
+
+## Setup
+
+1. Clone the repository.
+2. Install dependencies.
+3. Add your environment variables.
+4. Run the app locally.
 
 ```bash
-base44 dev
-```
-
-`base44 dev` starts the local Base44 development backend and, when this app is configured for it, also starts the frontend dev server for you. Use the frontend URL printed by the command.
-
-For example, when the Base44 project config includes a `serveCommand`, `base44 dev` can launch the frontend too:
-
-```json5
-{
-  "site": {
-    "serveCommand": "npm run dev"
-  }
-}
-```
-
-In a Base44 project this lives in `base44/config.jsonc`.
-
-## Run Only The Frontend
-
-If you only want to work on the frontend against the hosted Base44 backend, run:
-
-```bash
+npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite.
+## Environment Variables
 
-## Use The Hosted Backend
-
-For frontend-only development, create or update `.env.local` in the project root:
+Example variables used by the project:
 
 ```bash
-VITE_BASE44_APP_ID=your_app_id
-VITE_BASE44_APP_BASE_URL=https://your-app.base44.app
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+GEMINI_API_KEY=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+RESEND_API_KEY=
+GEOAPIFY_API_KEY=
+EMAIL_VERIFY_API_KEY=
 ```
 
-`VITE_BASE44_APP_ID` identifies the Base44 app.
+## Project Notes
 
-`VITE_BASE44_APP_BASE_URL` tells the Base44 Vite plugin where to send local `/api` requests. Point it at your deployed Base44 app URL when you want the local frontend to use the hosted backend.
+This project was built with Base44 during the prototyping stage and later moved toward a custom backend stack using Supabase, Google Gemini, and external APIs to keep the app fully functional and production-ready.
 
-When you use `base44 dev`, the command injects the local Base44 values for you, so `.env.local` is mainly needed for frontend-only workflows.
+## License
 
-## Publish Your Changes
+MIT LICENSE
 
-After pushing your changes to git, open the Base44 dashboard and publish the app:
-
-```bash
-base44 dashboard open
-```
-
-## Docs & Support
-
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
-
-Base44 CLI command reference: [https://docs.base44.com/developers/references/cli/commands/introduction](https://docs.base44.com/developers/references/cli/commands/introduction)
-
-Support: [https://app.base44.com/support](https://app.base44.com/support)
+Team Members: Zaina Shaikh, Tasbeeh Abdelmoneim, Aisha Ahmed
