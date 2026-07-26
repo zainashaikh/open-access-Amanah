@@ -1,10 +1,18 @@
 import base44 from "@base44/vite-plugin"
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import { handleChatRequest } from './src/server/chatHandler.js'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  // Load ALL env vars (including non-VITE_ prefixed ones) and expose the
+  // server-only key to process.env so the /api/chat middleware can reach it.
+  const env = loadEnv(mode, process.cwd(), '')
+  if (!process.env.GEMINI_API_KEY && env.GEMINI_API_KEY) {
+    process.env.GEMINI_API_KEY = env.GEMINI_API_KEY
+  }
+
+  return {
   server: {
     host: '0.0.0.0',
     port: 3000,
@@ -47,5 +55,6 @@ export default defineConfig({
       visualEditAgent: true
     }),
     react(),
-  ]
+    ]
+  }
 });
