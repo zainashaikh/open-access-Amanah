@@ -1,0 +1,116 @@
+{
+  "name": "StudyPlace",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "place_type": {
+      "type": "string",
+      "enum": [
+        "cafe",
+        "restaurant"
+      ],
+      "default": "restaurant"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "lat": {
+      "type": "number"
+    },
+    "lng": {
+      "type": "number"
+    },
+    "website": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "halal_status": {
+      "type": "string",
+      "enum": [
+        "verified",
+        "halal_friendly",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "halal_note": {
+      "type": "string"
+    },
+    "study_note": {
+      "type": "string"
+    },
+    "quiet": {
+      "type": "boolean",
+      "default": false
+    },
+    "wifi": {
+      "type": "boolean",
+      "default": false
+    },
+    "late_night": {
+      "type": "boolean",
+      "default": false
+    },
+    "family_safe": {
+      "type": "boolean",
+      "default": false
+    },
+    "women_safe": {
+      "type": "boolean",
+      "default": false
+    },
+    "mosque_adjacent": {
+      "type": "boolean",
+      "default": false
+    },
+    "open_hours": {
+      "type": "string"
+    },
+    "osm_id": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "default": "osm"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "name",
+    "place_type"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

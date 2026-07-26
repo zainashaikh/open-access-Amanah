@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #f7f4ee; }
+      .gold-line { stroke: #bfa15f; stroke-width: 4.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .green-star { stroke: #1f382a; stroke-width: 6.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .arabic-text { font-family: 'Amiri', 'Scheherazade New', 'Noto Naskh Arabic', serif; font-weight: 700; font-size: 110px; fill: #1f382a; text-anchor: middle; dominant-baseline: central; }
+      .gold-fill { fill: #bfa15f; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="500" height="500" class="bg" rx="40" />
+
+  <!-- Outer Rounded Gold Flower/Star Motif -->
+  <path class="gold-line" d="M 250,55 C 298,55 318,108 354,146 C 392,182 445,202 445,250 C 445,298 392,318 354,354 C 318,392 298,445 250,445 C 202,445 182,392 146,354 C 108,318 55,298 55,250 C 55,202 108,182 146,146 C 182,108 202,55 250,55 Z" />
+
+  <!-- Inner Dark Green 8-Pointed Geometric Star -->
+  <g class="green-star">
+    <polygon points="152,152 250,110 348,152 390,250 348,348 250,390 152,348 110,250" />
+    <polygon points="110,152 250,82 390,152 390,348 250,418 110,348" transform="rotate(45 250 250)" />
+  </g>
+
+  <!-- Top Ornament: Sprouting Leaves & Diamond -->
+  <g class="gold-line">
+    <path d="M 250,158 C 242,138 228,126 220,128 C 228,142 242,152 250,158 Z" class="bg" />
+    <path d="M 250,158 C 258,138 272,126 280,128 C 272,142 258,152 250,158 Z" class="bg" />
+  </g>
+  <polygon points="250,114 253.5,118.5 250,123 246.5,118.5" class="gold-fill" />
+
+  <!-- Center Arabic Text "أمانة" -->
+  <text x="250" y="260" class="arabic-text">أمانة</text>
+
+  <!-- Bottom Ornament: Inverted Sprouting Leaves & Diamond -->
+  <g class="gold-line">
+    <path d="M 250,342 C 242,362 228,374 220,372 C 228,358 242,348 250,342 Z" class="bg" />
+    <path d="M 250,342 C 258,362 272,374 280,372 C 272,358 258,348 250,342 Z" class="bg" />
+  </g>
+  <polygon points="250,386 253.5,381.5 250,377 246.5,381.5" class="gold-fill" />
+</svg>

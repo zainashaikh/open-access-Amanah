@@ -1,0 +1,57 @@
+{
+  "name": "SSLForm",
+  "type": "object",
+  "properties": {
+    "user_id": { "type": "string" },
+    "log_id": { "type": "string" },
+    "student_name": { "type": "string" },
+    "student_id": { "type": "string" },
+    "student_email": { "type": "string" },
+    "student_phone": { "type": "string" },
+    "school_name": { "type": "string" },
+    "grade": { "type": "string" },
+    "first_period_teacher": { "type": "string" },
+    "parent_guardian_name": { "type": "string" },
+    "parent_guardian_email": { "type": "string" },
+    "org_name": { "type": "string" },
+    "opp_title": { "type": "string" },
+    "service_date": { "type": "string" },
+    "hours": { "type": "number" },
+    "supervisor_name": { "type": "string" },
+    "supervisor_email": { "type": "string" },
+    "supervisor_phone": { "type": "string" },
+    "reflection_learning": { "type": "string" },
+    "reflection_benefit": { "type": "string" },
+    "reflection_skills": { "type": "string" },
+    "reflection_self": { "type": "string" },
+    "reflection_community": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "sent_pending_approval", "approved", "rejected"],
+      "default": "sent_pending_approval"
+    },
+    "created_date": { "type": "string" }
+  },
+  "required": ["user_id", "student_name", "school_name", "org_name", "opp_title", "service_date", "hours"],
+  "rls": {
+    "read": {
+      "$or": [
+        { "data.user_id": "{{user.id}}" },
+        { "user_condition": { "role": "admin" } }
+      ]
+    },
+    "create": { "data.user_id": "{{user.id}}" },
+    "update": {
+      "$or": [
+        { "data.user_id": "{{user.id}}" },
+        { "user_condition": { "role": "admin" } }
+      ]
+    },
+    "delete": {
+      "$or": [
+        { "data.user_id": "{{user.id}}" },
+        { "user_condition": { "role": "admin" } }
+      ]
+    }
+  }
+}

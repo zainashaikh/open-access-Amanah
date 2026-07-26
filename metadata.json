@@ -1,0 +1,8 @@
+{
+  "name": "Amanah",
+  "description": "A volunteer discovery, skill swap, and AI goal coaching platform for Muslim students.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
