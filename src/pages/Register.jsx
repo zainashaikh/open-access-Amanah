@@ -29,7 +29,14 @@ export default function Register() {
     }
     setLoading(true);
     try {
-      await base44.auth.register({ email, password });
+      const result = await base44.auth.register({ email, password });
+      // In demo/fallback mode no verification email is sent, so log the user
+      // in directly instead of showing an OTP screen they can never complete.
+      if (result?.skipOtp) {
+        await base44.auth.loginViaEmailPassword(email, password);
+        window.location.href = "/dashboard";
+        return;
+      }
       setShowOtp(true);
     } catch (err) {
       setError(err.message || "Registration failed");

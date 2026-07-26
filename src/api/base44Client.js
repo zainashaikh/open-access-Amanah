@@ -589,6 +589,16 @@ export const base44 = {
   setToken: (...args) => rawClient?.setToken?.(...args),
   getConfig: (...args) => rawClient?.getConfig?.(...args),
   auth: {
+    setToken: (token) => {
+      if (typeof window !== 'undefined' && token) {
+        localStorage.setItem('base44_access_token', token);
+      }
+      try {
+        rawClient?.setToken?.(token);
+      } catch {
+        // ignore in fallback mode
+      }
+    },
     me: async () => {
       if (useLocalFallback) return getStoredUser();
       try {
@@ -644,14 +654,14 @@ export const base44 = {
       return u;
     },
     register: async (data) => {
-      if (useLocalFallback) return { success: true };
+      if (useLocalFallback) return { success: true, skipOtp: true };
       try {
         if (rawClient?.auth?.register) return await rawClient.auth.register(data);
         return { success: true };
       } catch (err) {
         if (is404Error(err)) {
           useLocalFallback = true;
-          return { success: true };
+          return { success: true, skipOtp: true };
         }
         throw err;
       }
